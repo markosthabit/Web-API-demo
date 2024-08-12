@@ -1,4 +1,5 @@
-using Web_API_demo.Services;
+using Microsoft.EntityFrameworkCore;
+using Web_API_demo.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,9 +9,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-// This is a dependency registration operation
-builder.Services.AddScoped<IWeatherForecastService, WeatherForecastService>();
+builder.Services.AddDbContext<ApplicationDbContext>(builder => builder.UseSqlServer("server=.;database=Products;integrated security=true;trust server certificate=true"));
 
 var app = builder.Build();
 
