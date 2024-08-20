@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Web_API_demo.Data;
+using Web_API_demo.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +20,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseMiddleware<RateLimitingMiddleware>();
+
+app.UseMiddleware<ProfilingMiddleware>();
 
 app.UseHttpsRedirection();
 

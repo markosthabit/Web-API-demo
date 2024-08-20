@@ -14,9 +14,9 @@ namespace Web_API_demo.Controllers
             _dbContext = dbContext;
 
         }
-
+        
         [HttpGet]
-        [Route("")]
+        [Route("GetAll")]
 
         public ActionResult<IEnumerable<Product>> Get()
         {
@@ -26,7 +26,7 @@ namespace Web_API_demo.Controllers
         }
 
         [HttpGet]
-        [Route("{id}")]
+        [Route("GetById")]
         public ActionResult<Product> GetById(int id)
         {
             var record = _dbContext.Set<Product>().Find(id);
@@ -42,6 +42,7 @@ namespace Web_API_demo.Controllers
             return Ok(product.Id);
         }
 
+        // Decorators or attributes
         [HttpPut]
         [Route("")]
 
