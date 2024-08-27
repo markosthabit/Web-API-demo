@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Web_API_demo.Data;
+using Web_API_demo.Filters;
 
 namespace Web_API_demo.Controllers
 {
@@ -27,6 +28,7 @@ namespace Web_API_demo.Controllers
 
         [HttpGet]
         [Route("GetById")]
+        [LogSensitiveAction]
         public ActionResult<Product> GetById(int id)
         {
             var record = _dbContext.Set<Product>().Find(id);
